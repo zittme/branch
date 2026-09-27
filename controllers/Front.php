@@ -90,6 +90,7 @@ class Front extends Base
 		\Context::set('amenities', BranchModel::getAmenities($branch));
 		\Context::set('open_now', BranchModel::isOpenNow($branch_srl));
 		\Context::set('today_hours', BranchModel::getTodayHours($branch_srl));
+		\Context::set('map_links', BranchModel::getMapLinks($branch));
 		\Context::setBrowserTitle((string)$branch->name);
 
 		$this->prepareSkin();

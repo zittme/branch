@@ -21,6 +21,7 @@
 		<action name="dispBranchAdminEdit" class="Controllers\Admin" permission="manager" />
 		<action name="procBranchAdminInsert" class="Controllers\Admin" permission="manager" />
 		<action name="procBranchAdminDelete" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminInsertConfig" class="Controllers\Admin" permission="manager" />
 		<action name="procBranchAdminInsertHoliday" class="Controllers\Admin" permission="manager" />
 		<action name="procBranchAdminDeleteHoliday" class="Controllers\Admin" permission="manager" />
 		<action name="procBranchAdminGetLangCodes" class="Controllers\Admin" permission="manager" />

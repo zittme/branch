@@ -84,3 +84,17 @@ $lang->branch_adm_lang_edit = '고치기';
 $lang->branch_adm_lang_unlink = '연결 해제';
 $lang->branch_adm_lang_empty = '등록된 문구가 없습니다. 새로 만들어 주세요.';
 $lang->branch_adm_lang_list_failed = '목록을 불러오지 못했습니다.';
+
+// Map links
+$lang->branch_map_links = '지도 링크';
+$lang->branch_map_mode = '지도';
+$lang->about_branch_map_mode = '자동은 방문자 언어가 한국어이면 카카오맵과 네이버 지도, 그 밖의 언어이면 Google 지도를 보여 줍니다. 링크는 새 창으로 열립니다.';
+$lang->branch_map_services = '함께 보일 지도';
+$lang->branch_map_auto = '자동';
+$lang->branch_map_multi = '여러 지도 함께';
+$lang->branch_map_kakao = '카카오맵';
+$lang->branch_map_naver = '네이버 지도';
+$lang->branch_map_google = 'Google 지도';
+$lang->branch_map_osm = 'OpenStreetMap';
+$lang->branch_map_view = '지도 보기';
+$lang->branch_map_route = '길찾기';

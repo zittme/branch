@@ -52,4 +52,33 @@
 		</tbody>
 	</table>
 	@endif
+
+	<form class="bra-panel" action="./" method="post" style="margin-top:20px">
+		<input type="hidden" name="module" value="branch" />
+		<input type="hidden" name="act" value="procBranchAdminInsertConfig" />
+		<h3>{{ $lang->branch_map_links }}</h3>
+		<div class="bra-field">
+			<label for="bra_map_mode">{{ $lang->branch_map_mode }}</label>
+			<select id="bra_map_mode" name="map_mode" style="max-width:320px">
+				@foreach (['auto', 'kakao', 'naver', 'google', 'osm', 'multi'] as $bra_mode)
+				<option value="{{ $bra_mode }}" @selected($map_config->map_mode === $bra_mode)>{{ $lang->{'branch_map_' . $bra_mode} }}</option>
+				@endforeach
+			</select>
+			<small>{{ $lang->about_branch_map_mode }}</small>
+		</div>
+		<div class="bra-field" id="bra_map_multi" @if ($map_config->map_mode !== 'multi') hidden @endif>
+			<label>{{ $lang->branch_map_services }}</label>
+			<div class="bra-inline">
+				@foreach (['kakao', 'naver', 'google', 'osm'] as $bra_service)
+				<span style="display:inline-flex;align-items:center;gap:6px;font-size:13.5px"><input type="checkbox" name="map_services[]" value="{{ $bra_service }}" id="bra_ms_{{ $bra_service }}" @checked(in_array($bra_service, $map_config->map_services, true)) /><label for="bra_ms_{{ $bra_service }}" style="margin:0;font-weight:500">{{ $lang->{'branch_map_' . $bra_service} }}</label></span>
+				@endforeach
+			</div>
+		</div>
+		<button type="submit" class="bra-btn bra-btn-primary">{{ $lang->cmd_save }}</button>
+	</form>
+	<script>
+	document.getElementById('bra_map_mode').addEventListener('change', function () {
+		document.getElementById('bra_map_multi').hidden = this.value !== 'multi';
+	});
+	</script>
 </div>

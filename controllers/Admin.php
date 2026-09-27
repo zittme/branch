@@ -41,6 +41,7 @@ class Admin extends Base
 
 		\Context::set('branches', array_values($branches));
 		\Context::set('today_hours', $today);
+		\Context::set('map_config', BranchModel::getMapConfig());
 		$this->renderView('list', 'list');
 	}
 
@@ -204,6 +205,30 @@ class Admin extends Base
 		}
 
 		$this->setMessage('success_deleted');
+		$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispBranchAdminList'));
+	}
+
+	/**
+	 * 지도 링크 설정 저장.
+	 */
+	public function procBranchAdminInsertConfig()
+	{
+		$mode = (string)\Context::get('map_mode');
+		$services = \Context::get('map_services');
+		$services = is_array($services) ? array_map('strval', $services) : [];
+
+		$config = \ModuleModel::getModuleConfig('branch');
+		$config = is_object($config) ? $config : new \stdClass;
+		$config->map_mode = in_array($mode, BranchModel::MAP_MODES, true) ? $mode : 'auto';
+		$config->map_services = array_values(array_intersect(BranchModel::MAP_SERVICES, $services));
+
+		$output = \ModuleController::getInstance()->insertModuleConfig('branch', $config);
+		if (!$output->toBool())
+		{
+			return $output;
+		}
+
+		$this->setMessage('success_updated');
 		$this->setRedirectUrl(getNotEncodedUrl('', 'module', 'admin', 'act', 'dispBranchAdminList'));
 	}
 

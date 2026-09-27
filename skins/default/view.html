@@ -5,7 +5,6 @@
 $brv_days = explode(',', (string)$lang->branch_weekday);
 $brv_today = (int)date('w');
 $brv_full_address = trim($branch->address . ' ' . $branch->address_detail);
-$brv_has_map = is_numeric($branch->lat) && is_numeric($branch->lng);
 @endphp
 
 <div class="brv">
@@ -96,9 +95,18 @@ $brv_has_map = is_numeric($branch->lat) && is_numeric($branch->lng);
 				<p class="brv-tel"><a href="tel:{{ $branch->tel }}">{{ $branch->tel }}</a></p>
 				@endif
 
-				@if ($brv_has_map)
-				<a class="brl-btn brl-btn-primary brv-map" target="_blank" rel="noopener"
-					href="https://map.kakao.com/link/map/{{ rawurlencode($branch->name) }},{{ $branch->lat }},{{ $branch->lng }}">{{ $lang->branch_directions }}</a>
+				@if (!empty($map_links))
+				<ul class="brv-maps">
+					@foreach ($map_links as $brv_map)
+					<li class="brv-map-row">
+						<span class="brv-map-name">{{ $brv_map['name'] }}</span>
+						<span class="brv-map-actions">
+							<a class="brl-btn" href="{{ $brv_map['view_url'] }}" target="_blank" rel="noopener" aria-label="{{ $brv_map['name'] }} {{ $lang->branch_map_view }}">{{ $lang->branch_map_view }}</a>
+							<a class="brl-btn brl-btn-primary" href="{{ $brv_map['route_url'] }}" target="_blank" rel="noopener" aria-label="{{ $brv_map['name'] }} {{ $lang->branch_map_route }}">{{ $lang->branch_map_route }}</a>
+						</span>
+					</li>
+					@endforeach
+				</ul>
 				@endif
 			</div>
 

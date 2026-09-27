@@ -96,7 +96,11 @@
 .brv-postcode { display: inline-block; margin-right: 6px; padding: 1px 7px; border-radius: 6px; background: var(--brc-soft); font-size: 12.5px; color: var(--brc-sub); }
 .brv-tel { margin: 12px 0 0; font-size: 18px; font-weight: 800; }
 .brv-tel a { color: inherit; text-decoration: none; }
-.brv-map { width: 100%; margin-top: 10px; }
+.brv-maps { list-style: none; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--brc-line); display: grid; gap: 12px; }
+.brv-map-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.brv-map-name { font-size: 14px; font-weight: 700; }
+.brv-map-actions { display: flex; gap: 6px; }
+.brv-map-actions .brl-btn { margin-top: 0; padding: 8px 13px; font-size: 13.5px; }
 .brv-amenities { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
 .brv-amenities li { padding: 5px 11px; border-radius: 999px; background: var(--brc-soft); font-size: 13px; color: var(--brc-sub); }
 .brv-back { width: 100%; }

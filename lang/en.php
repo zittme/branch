@@ -84,3 +84,17 @@ $lang->branch_adm_lang_edit = 'Edit';
 $lang->branch_adm_lang_unlink = 'Unlink';
 $lang->branch_adm_lang_empty = 'No phrases yet. Please create one.';
 $lang->branch_adm_lang_list_failed = 'The list could not be loaded.';
+
+// Map links
+$lang->branch_map_links = 'Map links';
+$lang->branch_map_mode = 'Map';
+$lang->about_branch_map_mode = 'Auto shows Kakao Map and Naver Map to Korean visitors and Google Maps to everyone else. Links open in a new window.';
+$lang->branch_map_services = 'Maps to show';
+$lang->branch_map_auto = 'Auto';
+$lang->branch_map_multi = 'Several maps';
+$lang->branch_map_kakao = 'Kakao Map';
+$lang->branch_map_naver = 'Naver Map';
+$lang->branch_map_google = 'Google Maps';
+$lang->branch_map_osm = 'OpenStreetMap';
+$lang->branch_map_view = 'View map';
+$lang->branch_map_route = 'Directions';

@@ -83,3 +83,17 @@ $lang->branch_adm_lang_edit = '修正';
 $lang->branch_adm_lang_unlink = '紐づけ解除';
 $lang->branch_adm_lang_empty = '登録された文言がありません。新しく作ってください。';
 $lang->branch_adm_lang_list_failed = '一覧を読み込めませんでした。';
+
+// Map links
+$lang->branch_map_links = '地図リンク';
+$lang->branch_map_mode = '地図';
+$lang->about_branch_map_mode = '自動では、韓国語の訪問者にはカカオマップとNAVER地図、それ以外の言語にはGoogle マップを表示します。リンクは新しいウィンドウで開きます。';
+$lang->branch_map_services = '表示する地図';
+$lang->branch_map_auto = '自動';
+$lang->branch_map_multi = '複数の地図';
+$lang->branch_map_kakao = 'カカオマップ';
+$lang->branch_map_naver = 'NAVER地図';
+$lang->branch_map_google = 'Google マップ';
+$lang->branch_map_osm = 'OpenStreetMap';
+$lang->branch_map_view = '地図を見る';
+$lang->branch_map_route = 'ルート検索';
