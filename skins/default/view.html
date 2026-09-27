@@ -1,0 +1,143 @@
+@version(2)
+<load target="css/branch.css" />
+
+@php
+$brv_days = explode(',', (string)$lang->branch_weekday);
+$brv_today = (int)date('w');
+$brv_full_address = trim($branch->address . ' ' . $branch->address_detail);
+$brv_has_map = is_numeric($branch->lat) && is_numeric($branch->lng);
+@endphp
+
+<div class="brv">
+	<div class="brv-head">
+		<div class="brv-head-meta">
+			@if ($branch->region)<span class="brv-region">{{ $branch->region }}</span>@endif
+			<span class="brl-open @if($open_now) is-open @endif">{{ $open_now ? $lang->branch_open_now : $lang->branch_closed_now }}</span>
+		</div>
+		<h1 class="brv-title">{{ $branch->name }}</h1>
+		@if ($branch->summary)<p class="brv-summary">{{ $branch->summary }}</p>@endif
+	</div>
+
+	@if (count($images))
+	<div class="brv-gallery">
+		@foreach ($images as $img)
+		<img src="{{ $img }}" alt="" loading="lazy" />
+		@endforeach
+	</div>
+	@elseif ($branch->thumb)
+	<div class="brv-gallery">
+		<img src="{{ $branch->thumb }}" alt="" loading="lazy" />
+	</div>
+	@endif
+
+	<div class="brv-cols">
+		<div class="brv-main">
+			@if ($branch->content)
+			<section class="brv-section">
+				<h2>{{ $lang->branch_content }}</h2>
+				<div class="brv-content">{!! $branch->content !!}</div>
+			</section>
+			@endif
+
+			<section class="brv-section">
+				<h2>{{ $lang->branch_hours }}</h2>
+				<table class="brv-hours">
+					<tbody>
+						@foreach ($brv_days as $wd => $wd_label)
+						@php
+						$h = $hours[$wd] ?? null;
+						$closed = !$h || (string)$h->is_closed === 'Y' || !$h->open_time || !$h->close_time;
+						$has_break = $h && $h->break_start && $h->break_end;
+						@endphp
+						<tr class="@if($wd === $brv_today) is-today @endif">
+							<th>{{ $wd_label }}</th>
+							<td>
+								@if ($closed)
+								<span class="brv-off">{{ $lang->branch_day_closed }}</span>
+								@else
+								{{ $h->open_time }} - {{ $h->close_time }}
+								@if ($has_break)
+								<small>{{ $lang->branch_break }} {{ $h->break_start }} - {{ $h->break_end }}</small>
+								@endif
+								@endif
+							</td>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+
+				@if (count($holidays))
+				<ul class="brv-holidays">
+					@foreach ($holidays as $hd)
+					@php
+					$hd_once = (string)$hd->repeat_type === 'once';
+					$hd_date = (string)$hd->holiday_date;
+					$hd_when = $hd_once
+						? (strlen($hd_date) === 8 ? substr($hd_date, 0, 4) . '-' . substr($hd_date, 4, 2) . '-' . substr($hd_date, 6, 2) : $hd_date)
+						: (sprintf('%d', (int)$hd->nth) . ' ' . ($brv_days[(int)$hd->weekday] ?? ''));
+					@endphp
+					<li><b>{{ $hd_when }}</b> {{ $hd->reason }}</li>
+					@endforeach
+				</ul>
+				@endif
+			</section>
+		</div>
+
+		<aside class="brv-side">
+			<div class="brv-card">
+				<h2>{{ $lang->branch_directions }}</h2>
+				<p class="brv-address">
+					@if ($branch->postcode)<span class="brv-postcode">{{ $branch->postcode }}</span>@endif
+					{{ $brv_full_address }}
+				</p>
+				<button type="button" class="brl-btn" data-copy="{{ $brv_full_address }}" data-done="{{ $lang->branch_address_copied }}">{{ $lang->branch_copy_address }}</button>
+
+				@if ($branch->tel)
+				<p class="brv-tel"><a href="tel:{{ $branch->tel }}">{{ $branch->tel }}</a></p>
+				@endif
+
+				@if ($brv_has_map)
+				<a class="brl-btn brl-btn-primary brv-map" target="_blank" rel="noopener"
+					href="https://map.kakao.com/link/map/{{ rawurlencode($branch->name) }},{{ $branch->lat }},{{ $branch->lng }}">{{ $lang->branch_directions }}</a>
+				@endif
+			</div>
+
+			@if (count($amenities))
+			<div class="brv-card">
+				<h2>{{ $lang->branch_amenities }}</h2>
+				<ul class="brv-amenities">
+					@foreach ($amenities as $am)
+					<li>{{ $am }}</li>
+					@endforeach
+				</ul>
+			</div>
+			@endif
+
+			<a class="brl-btn brv-back" href="{{ getUrl('', 'mid', $module_info->mid, 'act', '') }}">{{ $lang->cmd_list }}</a>
+		</aside>
+	</div>
+</div>
+
+<script>
+(function () {
+	document.querySelectorAll('[data-copy]').forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			var text = btn.getAttribute('data-copy') || '';
+			if (!text) { return; }
+			if (navigator.clipboard && navigator.clipboard.writeText) {
+				navigator.clipboard.writeText(text);
+			} else {
+				var el = document.createElement('textarea');
+				el.value = text;
+				document.body.appendChild(el);
+				el.select();
+				try { document.execCommand('copy'); } catch (e) {}
+				document.body.removeChild(el);
+			}
+			var old = btn.textContent;
+			btn.textContent = btn.getAttribute('data-done') || old;
+			setTimeout(function () { btn.textContent = old; }, 1500);
+		});
+	});
+})();
+</script>

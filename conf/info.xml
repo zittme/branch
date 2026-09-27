@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+	<title xml:lang="ko">지점</title>
+	<title xml:lang="en">Branch</title>
+	<description xml:lang="ko">매장과 지점 정보를 한 곳에서 관리합니다. 주소와 좌표, 전화, 요일별 영업시간과 브레이크타임, 휴무일, 사진을 등록하면 지점 안내 화면과 찾아오는 길이 만들어집니다. 예약을 비롯한 다른 모듈이 지점 번호로 참조해 쓰도록 설계했습니다.</description>
+	<description xml:lang="en">Manage stores and branches in one place. Register address and coordinates, phone, weekday opening hours with breaks, closing days and photos to get branch listing and directions screens. Other modules, such as reservation, reference a branch by its number.</description>
+	<version>0.2.0</version>
+	<date>2026-09-28</date>
+	<category>service</category>
+	<author email_address="zittme-contact@zzan.me" link="https://zitt.me">
+		<name xml:lang="ko">ZZAN Studio</name>
+		<name xml:lang="en">ZZAN Studio</name>
+	</author>
+</module>

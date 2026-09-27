@@ -1,0 +1,70 @@
+@version(2)
+<load target="css/branch.css" />
+
+@php
+$brl_days = explode(',', (string)$lang->branch_weekday);
+@endphp
+
+<div class="brl">
+	<div class="brl-head">
+		<h1 class="brl-title">{{ $lang->branch_list }}</h1>
+	</div>
+
+	<form class="brl-search" action="{{ getUrl() }}" method="get">
+		<input type="hidden" name="mid" value="{{ $module_info->mid }}" />
+		<input type="text" name="search_keyword" value="{{ $search_keyword }}" placeholder="{{ $lang->branch_search_placeholder }}" />
+		<button type="submit" class="brl-btn brl-btn-primary">{{ $lang->cmd_search }}</button>
+	</form>
+
+	@if (count($regions) > 1)
+	<nav class="brl-regions">
+		<a href="{{ getUrl('', 'mid', $module_info->mid, 'region', '', 'search_keyword', $search_keyword) }}" class="@if(!$region) on @endif">{{ $lang->branch_all_regions }}</a>
+		@foreach ($regions as $r)
+		<a href="{{ getUrl('', 'mid', $module_info->mid, 'region', $r, 'search_keyword', $search_keyword) }}" class="@if($region === $r) on @endif">{{ $r }}</a>
+		@endforeach
+	</nav>
+	@endif
+
+	@if (count($branches))
+	<ul class="brl-list">
+		@foreach ($branches as $b)
+		@php
+		$b_srl = (int)$b->branch_srl;
+		$b_open = !empty($open_now[$b_srl]);
+		$b_hours = $today_hours[$b_srl] ?? null;
+		$b_url = getUrl('', 'mid', $module_info->mid, 'act', 'dispBranchView', 'branch_srl', $b_srl);
+		@endphp
+		<li class="brl-item">
+			<a class="brl-thumb" href="{{ $b_url }}">
+				@if ($b->thumb)
+				<img src="{{ $b->thumb }}" alt="" loading="lazy" />
+				@else
+				<span class="brl-thumb-none">{{ $b->name }}</span>
+				@endif
+			</a>
+			<div class="brl-body">
+				<div class="brl-item-top">
+					@if ($b->region)<span class="brl-region">{{ $b->region }}</span>@endif
+					<span class="brl-open @if($b_open) is-open @endif">{{ $b_open ? $lang->branch_open_now : $lang->branch_closed_now }}</span>
+				</div>
+				<a class="brl-name" href="{{ $b_url }}">{{ $b->name }}</a>
+				@if ($b->summary)<p class="brl-summary">{{ $b->summary }}</p>@endif
+				<dl class="brl-meta">
+					<dt>{{ $lang->branch_address }}</dt>
+					<dd>{{ trim($b->address . ' ' . $b->address_detail) }}</dd>
+					@if ($b->tel)
+					<dt>{{ $lang->branch_tel }}</dt>
+					<dd><a href="tel:{{ $b->tel }}">{{ $b->tel }}</a></dd>
+					@endif
+					<dt>{{ $lang->branch_hours }}</dt>
+					<dd>{{ $b_hours ? ($b_hours->open_time . ' - ' . $b_hours->close_time) : $lang->branch_today_closed }}</dd>
+				</dl>
+				<a class="brl-btn" href="{{ $b_url }}">{{ $lang->branch_view_detail }}</a>
+			</div>
+		</li>
+		@endforeach
+	</ul>
+	@else
+	<p class="brl-empty">{{ $lang->branch_none }}</p>
+	@endif
+</div>

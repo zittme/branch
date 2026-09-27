@@ -1,0 +1,13 @@
+<query id="insertHoliday" action="insert">
+	<tables><table name="branch_holiday" /></tables>
+	<columns>
+		<column name="holiday_srl" var="holiday_srl" notnull="notnull" />
+		<column name="branch_srl" var="branch_srl" notnull="notnull" />
+		<column name="repeat_type" var="repeat_type" default="once" />
+		<column name="holiday_date" var="holiday_date" />
+		<column name="nth" var="nth" default="0" />
+		<column name="weekday" var="weekday" default="0" />
+		<column name="reason" var="reason" />
+		<column name="regdate" var="regdate" />
+	</columns>
+</query>

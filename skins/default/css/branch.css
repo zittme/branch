@@ -1,0 +1,108 @@
+/*
+  지점 기본 스킨.
+  색은 레이아웃이 찍는 변수를 물려받고 폴백만 둔다. 스킨이 기기 설정을 직접 보면
+  레이아웃이 밝기를 다루지 않는 사이트에서 이 조각만 어두워져 화면이 어긋난다.
+*/
+.brl, .brv {
+	--brc-ink: var(--point-ink, #1c2330);
+	--brc-sub: var(--point-sub, #6b7684);
+	--brc-line: var(--point-line, #e5e8ee);
+	--brc-bg: var(--point-bg, #fff);
+	--brc-soft: var(--point-soft, #f7f8fa);
+	--brc-brand: var(--point-color, #2677e3);
+	color: var(--brc-ink);
+	word-break: keep-all;
+}
+
+:root[data-theme="dark"] .brl, :root[data-theme="dark"] .brv,
+.color_scheme_dark .brl, .color_scheme_dark .brv {
+	--brc-ink: var(--point-ink, #e9edf3);
+	--brc-sub: var(--point-sub, #99a1ad);
+	--brc-line: var(--point-line, #2c313a);
+	--brc-bg: var(--point-bg, #1b1f26);
+	--brc-soft: var(--point-soft, #22262e);
+}
+
+/* 목록 */
+.brl-head { margin-bottom: 20px; }
+.brl-title { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+
+.brl-search { display: flex; gap: 8px; margin-bottom: 16px; }
+.brl-search input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid var(--brc-line); border-radius: 10px; background: var(--brc-bg); color: inherit; font-size: 14px; font-family: inherit; }
+.brl-search input:focus { outline: none; border-color: var(--brc-brand); }
+
+.brl-regions { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+.brl-regions a { padding: 7px 14px; border: 1px solid var(--brc-line); border-radius: 999px; font-size: 13.5px; font-weight: 600; color: var(--brc-sub); text-decoration: none; }
+.brl-regions a.on { border-color: var(--brc-brand); background: var(--brc-brand); color: #fff; }
+
+.brl-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
+.brl-item { display: flex; flex-direction: column; border: 1px solid var(--brc-line); border-radius: 16px; overflow: hidden; background: var(--brc-bg); }
+
+.brl-thumb { display: block; aspect-ratio: 16 / 9; background: var(--brc-soft); overflow: hidden; }
+.brl-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brl-thumb-none { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; color: var(--brc-sub); font-size: 15px; font-weight: 700; }
+
+.brl-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 9px; }
+.brl-item-top { display: flex; align-items: center; gap: 7px; }
+.brl-region { padding: 2px 9px; border-radius: 999px; background: var(--brc-soft); font-size: 12px; font-weight: 600; color: var(--brc-sub); }
+.brl-open { padding: 2px 9px; border-radius: 999px; background: var(--brc-soft); font-size: 12px; font-weight: 700; color: var(--brc-sub); }
+.brl-open.is-open { background: rgba(38, 119, 227, .1); color: var(--brc-brand); }
+
+.brl-name { font-size: 19px; font-weight: 800; letter-spacing: -0.01em; color: inherit; text-decoration: none; }
+.brl-summary { margin: 0; font-size: 14px; color: var(--brc-sub); line-height: 1.6; }
+
+.brl-meta { margin: 4px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 5px 12px; font-size: 13.5px; }
+.brl-meta dt { color: var(--brc-sub); font-weight: 600; white-space: nowrap; }
+.brl-meta dd { margin: 0; }
+.brl-meta a { color: inherit; }
+
+.brl-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; margin-top: 6px; padding: 10px 16px; border: 1px solid var(--brc-line); border-radius: 10px; background: var(--brc-bg); color: inherit; font-size: 14px; font-weight: 600; font-family: inherit; text-decoration: none; cursor: pointer; }
+.brl-btn:hover { border-color: var(--brc-brand); color: var(--brc-brand); }
+.brl-btn-primary { background: var(--brc-brand); border-color: var(--brc-brand); color: #fff; }
+.brl-btn-primary:hover { filter: brightness(1.06); color: #fff; }
+
+.brl-empty { padding: 60px 0; text-align: center; color: var(--brc-sub); }
+
+/* 상세 */
+.brv-head { margin-bottom: 20px; }
+.brv-head-meta { display: flex; gap: 7px; margin-bottom: 10px; }
+.brv-region { padding: 2px 9px; border-radius: 999px; background: var(--brc-soft); font-size: 12px; font-weight: 600; color: var(--brc-sub); }
+.brv-title { margin: 0 0 8px; font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+.brv-summary { margin: 0; font-size: 15px; color: var(--brc-sub); }
+
+.brv-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-bottom: 26px; }
+.brv-gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; display: block; }
+
+.brv-cols { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 26px; align-items: start; }
+.brv-section { margin-bottom: 30px; }
+.brv-section h2, .brv-card h2 { margin: 0 0 14px; font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+.brv-content { font-size: 15px; line-height: 1.75; }
+
+.brv-hours { width: 100%; border-collapse: collapse; border: 1px solid var(--brc-line); border-radius: 12px; overflow: hidden; }
+.brv-hours th { width: 110px; padding: 11px 14px; background: var(--brc-soft); font-size: 13.5px; font-weight: 600; text-align: left; color: var(--brc-sub); border-bottom: 1px solid var(--brc-line); }
+.brv-hours td { padding: 11px 14px; font-size: 14px; border-bottom: 1px solid var(--brc-line); }
+.brv-hours tr:last-child th, .brv-hours tr:last-child td { border-bottom: 0; }
+.brv-hours tr.is-today th { color: var(--brc-brand); }
+.brv-hours tr.is-today td { font-weight: 700; }
+.brv-hours small { display: block; margin-top: 3px; font-size: 12.5px; color: var(--brc-sub); font-weight: 400; }
+.brv-off { color: var(--brc-sub); }
+
+.brv-holidays { list-style: none; margin: 14px 0 0; padding: 14px 16px; border: 1px dashed var(--brc-line); border-radius: 12px; font-size: 13.5px; color: var(--brc-sub); }
+.brv-holidays li + li { margin-top: 6px; }
+.brv-holidays b { color: var(--brc-ink); margin-right: 6px; }
+
+.brv-card { padding: 20px 22px; border: 1px solid var(--brc-line); border-radius: 16px; background: var(--brc-bg); margin-bottom: 14px; }
+.brv-address { margin: 0 0 12px; font-size: 14.5px; line-height: 1.65; }
+.brv-postcode { display: inline-block; margin-right: 6px; padding: 1px 7px; border-radius: 6px; background: var(--brc-soft); font-size: 12.5px; color: var(--brc-sub); }
+.brv-tel { margin: 12px 0 0; font-size: 18px; font-weight: 800; }
+.brv-tel a { color: inherit; text-decoration: none; }
+.brv-map { width: 100%; margin-top: 10px; }
+.brv-amenities { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; }
+.brv-amenities li { padding: 5px 11px; border-radius: 999px; background: var(--brc-soft); font-size: 13px; color: var(--brc-sub); }
+.brv-back { width: 100%; }
+
+@media (max-width: 900px) {
+	.brv-cols { grid-template-columns: 1fr; }
+	.brl-title { font-size: 24px; }
+	.brv-title { font-size: 25px; }
+}

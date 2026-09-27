@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+
+	<grants>
+		<grant name="access" default="guest">
+			<title xml:lang="ko">지점 안내 보기</title>
+			<title xml:lang="en">View branches</title>
+		</grant>
+	</grants>
+
+	<actions>
+		<!-- 프론트: 지점 화면은 mid 기반으로 동작한다 -->
+		<action name="dispBranchList" class="Controllers\Front" index="true" />
+		<action name="dispBranchView" class="Controllers\Front" />
+
+		<!-- 다른 모듈 화면에서 지점을 고르게 할 때 부른다. mid 없이도 불린다 -->
+		<action name="procBranchGetList" class="Controllers\Front" standalone="true" check-csrf="false" />
+
+		<!-- 관리자 -->
+		<action name="dispBranchAdminList" class="Controllers\Admin" admin-index="true" menu-name="branch" menu-index="true" permission="manager" />
+		<action name="dispBranchAdminEdit" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminInsert" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminDelete" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminInsertHoliday" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminDeleteHoliday" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminGetLangCodes" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminGetLangCode" class="Controllers\Admin" permission="manager" />
+		<action name="procBranchAdminSaveLangCode" class="Controllers\Admin" permission="manager" />
+	</actions>
+
+	<menus>
+		<menu name="branch">
+			<title xml:lang="ko">지점</title>
+			<title xml:lang="en">Branch</title>
+		</menu>
+	</menus>
+
+	<classes>
+		<class type="default" name="Controllers\Base" />
+		<class type="install" name="Controllers\Install" />
+	</classes>
+
+	<eventHandlers>
+		<!-- 인스턴스가 0개면 사이트맵 모듈 목록에 뜨지 않아 첫 페이지를 만들 수 없다 -->
+		<eventHandler after="menu.getModuleListInSitemap" class="Controllers\Trigger" method="addToSitemap" />
+	</eventHandlers>
+
+</module>

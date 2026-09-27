@@ -1,0 +1,17 @@
+<table name="branch_hour">
+	<!-- 요일별 영업시간. 요일마다 한 줄이며 없는 요일은 휴무로 본다 -->
+	<column name="hour_srl" type="bigint" notnull="notnull" primarykey="primarykey" />
+	<column name="branch_srl" type="bigint" notnull="notnull" default="0" index="idx_branch_srl" />
+	<!-- 0 = 일요일 ... 6 = 토요일 -->
+	<column name="weekday" type="int" notnull="notnull" default="0" />
+	<!-- HH:MM -->
+	<column name="open_time" type="varchar" size="5" />
+	<column name="close_time" type="varchar" size="5" />
+	<!-- 쉬는 시간. 비우면 없다 -->
+	<column name="break_start" type="varchar" size="5" />
+	<column name="break_end" type="varchar" size="5" />
+	<!-- 그 요일 자체가 휴무인가 -->
+	<column name="is_closed" type="char" size="1" notnull="notnull" default="N" />
+	<column name="regdate" type="char" size="14" />
+	<index name="unique_branch_weekday" columns="branch_srl,weekday" unique="true" />
+</table>

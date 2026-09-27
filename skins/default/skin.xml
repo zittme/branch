@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+	<title xml:lang="ko">기본 지점 스킨</title>
+	<title xml:lang="en">Default branch skin</title>
+	<description xml:lang="ko">지점 목록과 상세를 보여 주는 기본 스킨입니다. 지역으로 거르고, 지금 영업 중인지와 오늘 영업시간을 함께 보여 줍니다.</description>
+	<description xml:lang="en">The default skin for branch listing and detail. Filters by region and shows whether each branch is open now along with today's hours.</description>
+	<version>0.1.0</version>
+	<date>2026-09-05</date>
+	<author email_address="zittme-contact@zzan.me" link="https://zitt.me">
+		<name xml:lang="ko">ZZAN Studio</name>
+		<name xml:lang="en">ZZAN Studio</name>
+	</author>
+	<extra_vars />
+</skin>

@@ -1,0 +1,6 @@
+<query id="deleteBranch" action="delete">
+	<tables><table name="branch_branch" /></tables>
+	<conditions>
+		<condition operation="equal" column="branch_srl" var="branch_srl" required="true" />
+	</conditions>
+</query>

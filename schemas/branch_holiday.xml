@@ -1,0 +1,14 @@
+<table name="branch_holiday">
+	<!-- 지점 휴무일. 특정 날짜 또는 매달 n번째 요일 반복 -->
+	<column name="holiday_srl" type="bigint" notnull="notnull" primarykey="primarykey" />
+	<column name="branch_srl" type="bigint" notnull="notnull" default="0" index="idx_branch_srl" />
+	<!-- once = 특정 날짜 / monthly_nth = 매달 n번째 요일 -->
+	<column name="repeat_type" type="varchar" size="20" notnull="notnull" default="once" />
+	<!-- repeat_type 이 once 일 때. YYYYMMDD -->
+	<column name="holiday_date" type="char" size="8" index="idx_holiday_date" />
+	<!-- repeat_type 이 monthly_nth 일 때. 1~5 번째, 요일 0~6 -->
+	<column name="nth" type="int" notnull="notnull" default="0" />
+	<column name="weekday" type="int" notnull="notnull" default="0" />
+	<column name="reason" type="varchar" size="250" />
+	<column name="regdate" type="char" size="14" />
+</table>

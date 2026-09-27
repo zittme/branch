@@ -1,0 +1,25 @@
+<query id="updateBranch" action="update">
+	<tables><table name="branch_branch" /></tables>
+	<columns>
+		<column name="code" var="code" />
+		<column name="name" var="name" />
+		<column name="summary" var="summary" />
+		<column name="content" var="content" />
+		<column name="thumb" var="thumb" />
+		<column name="images" var="images" />
+		<column name="tel" var="tel" />
+		<column name="postcode" var="postcode" />
+		<column name="address" var="address" />
+		<column name="address_detail" var="address_detail" />
+		<column name="lat" var="lat" />
+		<column name="lng" var="lng" />
+		<column name="region" var="region" />
+		<column name="amenities" var="amenities" />
+		<column name="status" var="status" />
+		<column name="list_order" var="list_order" />
+		<column name="last_update" var="last_update" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="branch_srl" var="branch_srl" required="true" />
+	</conditions>
+</query>

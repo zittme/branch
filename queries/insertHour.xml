@@ -1,0 +1,14 @@
+<query id="insertHour" action="insert">
+	<tables><table name="branch_hour" /></tables>
+	<columns>
+		<column name="hour_srl" var="hour_srl" notnull="notnull" />
+		<column name="branch_srl" var="branch_srl" notnull="notnull" />
+		<column name="weekday" var="weekday" default="0" />
+		<column name="open_time" var="open_time" />
+		<column name="close_time" var="close_time" />
+		<column name="break_start" var="break_start" />
+		<column name="break_end" var="break_end" />
+		<column name="is_closed" var="is_closed" default="N" />
+		<column name="regdate" var="regdate" />
+	</columns>
+</query>

@@ -1,0 +1,10 @@
+<query id="getHolidayList" action="select">
+	<tables><table name="branch_holiday" /></tables>
+	<columns><column name="*" /></columns>
+	<conditions>
+		<condition operation="equal" column="branch_srl" var="branch_srl" required="true" />
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="holiday_srl" order="asc" />
+	</navigation>
+</query>

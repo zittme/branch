@@ -1,0 +1,16 @@
+<query id="getBranchList" action="select">
+	<tables><table name="branch_branch" /></tables>
+	<columns><column name="*" /></columns>
+	<conditions>
+		<condition operation="equal" column="module_srl" var="module_srl" />
+		<condition operation="equal" column="status" var="status" pipe="and" />
+		<condition operation="equal" column="region" var="region" pipe="and" />
+		<group pipe="and">
+			<condition operation="like" column="name" var="search_keyword" />
+			<condition operation="like" column="address" var="search_keyword" pipe="or" />
+		</group>
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="list_order" order="asc" />
+	</navigation>
+</query>
